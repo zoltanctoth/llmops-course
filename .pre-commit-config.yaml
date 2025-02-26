@@ -1,0 +1,63 @@
+---
+default_language_version:
+    python: python3.12
+    system: system
+repos:
+    - repo: https://github.com/myint/autoflake
+      rev: v2.3.1
+      hooks:
+          - id: autoflake
+            args: [--recursive, --in-place, --expand-star-imports, --remove-duplicate-keys, --remove-all-unused-imports]
+    - repo: https://github.com/hhatto/autopep8
+      rev: v2.3.2
+      hooks:
+          - id: autopep8
+            args: [--in-place, --max-line-length=120]
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v5.0.0
+      hooks:
+          - id: check-added-large-files
+          - id: check-toml
+          - id: end-of-file-fixer
+          - id: trailing-whitespace
+
+    - repo: https://github.com/pycqa/isort
+      rev: 6.0.0
+      hooks:
+          - id: isort
+            types: [python]
+            args: [--profile, black]      # Makes isort compatible with black
+
+    - repo: https://github.com/psf/black
+      rev: 25.1.0
+      hooks:
+          - id: black
+            types: [python]
+
+    - repo: https://github.com/pycqa/flake8
+      rev: 7.1.2
+      hooks:
+          - id: flake8
+            types: [python]
+            additional_dependencies: [flake8-bugbear]
+            args: [--max-line-length=120]  # Set max line length to 120
+
+    - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+      rev: 0.2.3
+      hooks:
+          - id: yamlfmt
+
+    - repo: local
+      hooks:
+          # - id: mypy
+          #   name: mypy
+          #   entry: bash -c 'echo "Running mypy" && mypy .'
+          #   language: python
+          #   pass_filenames: false
+          - id: devcontainer-validate
+            name: Validate devcontainer configuration
+            entry: bash -c 'devcontainer read-configuration --workspace-folder . --include-merged-configuration'
+            language: python
+            files: ^\.devcontainer/devcontainer\.json$
+            types: [json]
+            require_serial: true
