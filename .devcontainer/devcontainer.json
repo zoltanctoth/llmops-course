@@ -1,0 +1,66 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "LLMOps MooC",
+	"build": {
+		// Path is relative to the devcontainer.json file.
+		"context": "../",
+		"dockerfile": "Dockerfile"
+	},
+	// Allow the devcontainer to run host docker commands, see https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker
+	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+	},
+	// Configure tool-specific properties.
+	// "customizations": {},
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-toolsai.jupyter",
+				"ms-python.python",
+				"ms-python.black-formatter",
+				"ms-python.flake8",
+				"ms-python.isort"
+			],
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.pythonPath": "/usr/local/bin/python",
+				"jupyter.pythonPath": "/usr/local/bin/python",
+				"jupyter.notebookFileRoot": "${containerWorkspaceFolder}"
+			}
+		}
+	},
+	"remoteEnv": {
+		"WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
+		"PYTHONPATH": "${containerWorkspaceFolder}",
+		"MLFLOW_TRACKING_URI": "http://localhost:5050",
+		"MLFLOW_HOST": "0.0.0.0",
+		"MLFLOW_PORT": "5050",
+		"MLFLOW_BACKEND_STORE_URI": "sqlite:///${containerWorkspaceFolder}/.mlflow_data/mlflow.db",
+		"MLFLOW_DEFAULT_ARTIFACT_ROOT": "${containerWorkspaceFolder}/.mlflow_data/artifacts"
+	},
+	"postCreateCommand": "bash .devcontainer/setup-container.sh",
+	"postAttachCommand": "bash .devcontainer/setup-terminal.sh",
+	// Update port forwarding configuration
+	"forwardPorts": [
+		5050,
+		8050
+	],
+	"portsAttributes": {
+		"5050": {
+			"label": "MLflow UI",
+			"onAutoForward": "openBrowser",
+			"elevateIfNeeded": true,
+			"requireLocalPort": true,
+			"protocol": "http",
+			"description": "MLflow Tracking Server"
+		},
+		"8050": {
+			"label": "FastAPI Service",
+			"onAutoForward": "notify"
+		}
+	},
+	"remoteUser": "vscode"
+}
