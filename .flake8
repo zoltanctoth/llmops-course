@@ -1,5 +1,5 @@
 [flake8]
-max-line-length = 120
+max-line-length = 88
 exclude = .git,__pycache__,build,dist,.venv,venv
 # Ignore some errors that are too strict or conflict with black
 ignore = E203,W503

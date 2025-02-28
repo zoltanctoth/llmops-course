@@ -12,7 +12,7 @@ repos:
       rev: v2.3.2
       hooks:
           - id: autopep8
-            args: [--in-place, --max-line-length=120]
+            args: [--in-place, --max-line-length=88]
     - repo: https://github.com/pre-commit/pre-commit-hooks
       rev: v5.0.0
       hooks:
@@ -40,7 +40,7 @@ repos:
           - id: flake8
             types: [python]
             additional_dependencies: [flake8-bugbear]
-            args: [--max-line-length=120]  # Set max line length to 120
+            args: [--max-line-length=88]  # Set max line length to 88
 
     - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
       rev: 0.2.3
