@@ -40,7 +40,6 @@ repos:
           - id: flake8
             types: [python]
             additional_dependencies: [flake8-bugbear]
-            args: [--max-line-length=88]  # Set max line length to 88
 
     - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
       rev: 0.2.3

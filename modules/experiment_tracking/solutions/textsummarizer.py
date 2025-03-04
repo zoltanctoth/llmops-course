@@ -4,9 +4,15 @@ import google.generativeai as genai
 
 
 class TextSummarizer:
-    def __init__(self, *, prompt: str, model_name: str = "gemini-1.5-flash-8b", max_tokens: int = 1000):
+    def __init__(
+        self,
+        *,
+        prompt: str,
+        model_name: str = "gemini-1.5-flash-8b",
+        max_output_tokens: int = 1000,
+    ):
         self.model_name = model_name
-        self.max_tokens = max_tokens
+        self.max_output_tokens = max_output_tokens
         self.prompt = prompt
 
         api_key = os.getenv("GEMINI_API_KEY")

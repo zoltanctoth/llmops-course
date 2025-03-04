@@ -1,0 +1,6 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+This is an instructional material. Keep everything as simple as possible. No need to add comments. Write flake8/black/mypy comaptible code

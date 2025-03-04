@@ -2,31 +2,25 @@
 autoflake
 azureml-mlflow
 beautifulsoup4
-black
-evaluate
-flake8
-flake8-bugbear
-google-generativeai
-ipykernel
-ipywidgets
-isort
-langchain
-langchain-community
-langchain-google-genai
-markdownify
+black # formatter
+evaluate # tracking metric
+flake8 # linter
+flake8-bugbear # linter
+google-generativeai # model
+ipykernel # jupyter
+ipywidgets # jupyter
+isort # formatter
+markdownify # llmops
 mlflow
 mypy
 pip
-pre-commit
-pytest
-pytest-docker
-python-dotenv
-python-dotenv
+pre-commit # precommit hook
+python-dotenv # dotenv
 requests
 requests
-rouge-score
+rouge-score # tracking metric
 textstat
 tiktoken
 torch
 transformers
-yamlfmt
+yamlfmt # precommit hook

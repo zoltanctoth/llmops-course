@@ -13,7 +13,6 @@ profile = "black"
 line_length = 88
 
 [tool.autoflake]
-line-length = 120
 remove-all-unused-imports = true
 remove-unused-variables = true
 ignore-init-module-imports = true
