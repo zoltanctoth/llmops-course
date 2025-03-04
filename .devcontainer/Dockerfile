@@ -26,11 +26,13 @@ RUN curl https://pyenv.run | bash && \
     echo 'eval "$(pyenv init - zsh)"' >> ~/.zshrc && \
     echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
 
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
 USER vscode
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --user -r /tmp/requirements.txt
 
+
 EXPOSE 5050
 EXPOSE 8050
-

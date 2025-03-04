@@ -24,3 +24,4 @@ tiktoken
 torch
 transformers
 yamlfmt # precommit hook
+# azure-ai-ml
