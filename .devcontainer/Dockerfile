@@ -1,5 +1,10 @@
 FROM mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
 
+# Add Docker configuration to ignore secrets warnings
+RUN mkdir -p /home/vscode/.docker && \
+    echo '{"warnings": {"SecretsUsedInArgOrEnv": "ignore"}}' > /home/vscode/.docker/config.json && \
+    chown -R vscode:vscode /home/vscode/.docker
+
 # Update apt and install system dependencies
 RUN apt-get update && \
     apt-get install -y shellcheck && \

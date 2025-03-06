@@ -1,0 +1,28 @@
+artifact_path: article_summarizer
+flavors:
+  python_function:
+    cloudpickle_version: 3.1.1
+    code: code
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.12.8
+    streamable: false
+is_signature_from_type_hint: false
+mlflow_version: 2.20.3
+model_size_bytes: 66409
+model_uuid: 4ad3fe7980ef47ff9cb46f4c0f55ae16
+run_id: aea1c38e-37ca-401c-b27c-9b255843c993
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "string", "name": "text", "required": true}]'
+  outputs: '[{"type": "string", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-03-05 11:14:30.662220'
