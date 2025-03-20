@@ -3,3 +3,4 @@
 /.mlflow_data
 *.pyc
 */__pycache__/*
+modules/model_serving_docker/solutions/model/

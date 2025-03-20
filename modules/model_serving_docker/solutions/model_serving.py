@@ -22,19 +22,19 @@ async def summarize(article: dict[str, str]):
 
 if __name__ == "__main__":
     print("Loading model...")
-    mlflow_model = mlflow.pyfunc.load_model("./article_summarizer")
+    mlflow_model = mlflow.pyfunc.load_model("./model")
     print("Model loaded")
     # Run the FastAPI server
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8421)
 
 """
 # Health check
-curl http://localhost:8000/health
+curl http://localhost:8421/health
 
 # Summarize
-curl -X POST http://localhost:8000/summarize \
+curl -X POST http://localhost:8421/summarize \
   -H "Content-Type: application/json" \
   -d '{"text": "LLMOps is on the rise!"}'
 """

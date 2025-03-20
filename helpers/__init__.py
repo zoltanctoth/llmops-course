@@ -62,7 +62,9 @@ def _setup_environment():
             ipython.magic("load_ext autoreload")
             ipython.magic("autoreload 2")
 
-            print("🔁 Autoreload enabled: modules will reload automatically when changed")
+            print(
+                "🔁 Autoreload enabled: modules will reload automatically when changed"
+            )
     except (ImportError, AttributeError):
         pass  # Not in IPython environment or IPython doesn't support magic
 
@@ -75,7 +77,7 @@ def _setup_environment():
     # Set up logging
     logging.root.setLevel(logging.INFO)
     logging.basicConfig(format="%(message)s", level=logging.INFO)
-    logger = logging.getLogger(__name__)
+    logging.getLogger(__name__)
     print("📝 Logging configured")
 
     # Make sure pandas has doesn't truncate the output
@@ -105,7 +107,9 @@ def _setup_environment():
             if value:
                 # Mask sensitive values
                 masked_value = value
-                if any(s in key.lower() for s in ["key", "secret", "password", "token"]):
+                if any(
+                    s in key.lower() for s in ["key", "secret", "password", "token"]
+                ):
                     masked_value = "****" + value[-4:] if len(value) > 8 else "****"
 
                 if len(masked_value) > 10:
@@ -122,14 +126,16 @@ def _setup_environment():
             # Create a prominent but not overwhelming error message
             error_border = "=" * 80
             error_message = f"MISSING ENVIRONMENT VARIABLES: {', '.join(empty_vars)}"
-            spaces = " " * ((80 - len(error_message)) // 2)
+            " " * ((80 - len(error_message)) // 2)
 
             print("\n")
             print(error_border)
             print(f"❌  {error_message}  ❌")
             print(error_border)
             print("\n")
-            print("🚨 You must set values for these variables in your .env file to continue")
+            print(
+                "🚨 You must set values for these variables in your .env file to continue"
+            )
             print("🚨 Please check the .env.example file for the required format")
             print("🚨 After updating your .env file, restart your notebook or run:")
             print("    helpers.initialize()")
@@ -139,7 +145,7 @@ def _setup_environment():
         # Create a prominent but not overwhelming error message for missing .env file
         error_border = "=" * 80
         error_message = "MISSING .env FILE"
-        spaces = " " * ((80 - len(error_message)) // 2)
+        " " * ((80 - len(error_message)) // 2)
 
         print("\n")
         print(error_border)
@@ -171,7 +177,7 @@ def _setup_environment():
     return
 
 
-def initialize(notebook_path: str):
+def initialize(notebook_path: str = None):
     """
     Initialize the environment and optionally set up the notebook path.
 
@@ -196,9 +202,10 @@ def initialize(notebook_path: str):
     ```
     """
     # First set up the notebook path
-    path_setup_success = _setup_notebook_path(notebook_path)
-    if not path_setup_success:
-        print("⚠️ Warning: Failed to set up notebook path")
+    if notebook_path:
+        path_setup_success = _setup_notebook_path(notebook_path)
+        if not path_setup_success:
+            print("⚠️ Warning: Failed to set up notebook path")
 
     # Then initialize the environment
     env_setup_success = _setup_environment()

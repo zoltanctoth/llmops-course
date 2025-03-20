@@ -9,7 +9,8 @@
 	},
 	// Allow the devcontainer to run host docker commands, see https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker
 	"features": {
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
 	},
 	// Configure tool-specific properties.
 	// "customizations": {},
@@ -46,7 +47,8 @@
 	// Update port forwarding configuration
 	"forwardPorts": [
 		5050,
-		8050
+		8050,
+		8421
 	],
 	"portsAttributes": {
 		"5050": {
@@ -60,6 +62,12 @@
 		"8050": {
 			"label": "FastAPI Service",
 			"onAutoForward": "notify"
+		},
+		"8421": {
+			"label": "Model Serving API",
+			"onAutoForward": "notify",
+			"protocol": "http",
+			"description": "Docker Model Serving API"
 		}
 	},
 	"remoteUser": "vscode"

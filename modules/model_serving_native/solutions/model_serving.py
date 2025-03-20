@@ -29,8 +29,8 @@ if __name__ == "__main__":
     project_root = Path(os.getenv("WORKSPACE_FOLDER", "/workspaces/llmops-course"))
     dotenv.load_dotenv(project_root / ".env")
 
-    mlflow.set_tracking_uri(os.getenv("AZURE_MLFLOW_TRACKING_URI"))
-    mlflow_model = mlflow.pyfunc.load_model("models:/article_summarizer/9")
+    mlflow.set_tracking_uri("databricks")
+    mlflow_model = mlflow.pyfunc.load_model("models:/article_summarizer/4")
 
     # Run the FastAPI server
     import uvicorn
